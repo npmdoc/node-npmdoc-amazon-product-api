@@ -1,0 +1,260 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/t3chnoboy/amazon-product-api"
+
+    >amazon-product-api (v0.4.3)</a>
+</h1>
+<h4>Amazon Product Advertising API client</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.amazon-product-api">module amazon-product-api</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.amazon-product-api.createClient">
+            function <span class="apidocSignatureSpan">amazon-product-api.</span>createClient
+            <span class="apidocSignatureSpan">(credentials)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">amazon-product-api.</span>utils</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.amazon-product-api.utils">module amazon-product-api.utils</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.amazon-product-api.utils.formatQueryParams">
+            function <span class="apidocSignatureSpan">amazon-product-api.utils.</span>formatQueryParams
+            <span class="apidocSignatureSpan">(query, method, credentials)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.amazon-product-api.utils.generateQueryString">
+            function <span class="apidocSignatureSpan">amazon-product-api.utils.</span>generateQueryString
+            <span class="apidocSignatureSpan">(query, method, credentials)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.amazon-product-api" id="apidoc.module.amazon-product-api">module amazon-product-api</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.amazon-product-api.createClient" id="apidoc.element.amazon-product-api.createClient">
+        function <span class="apidocSignatureSpan">amazon-product-api.</span>createClient
+        <span class="apidocSignatureSpan">(credentials)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">createClient = function (credentials) {
+  return {
+    itemSearch: runQuery(credentials, &#x27;ItemSearch&#x27;),
+    itemLookup: runQuery(credentials, &#x27;ItemLookup&#x27;),
+    browseNodeLookup: runQuery(credentials, &#x27;BrowseNodeLookup&#x27;)
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+Require library
+```javascript
+var amazon = require(&#x27;amazon-product-api&#x27;);
+```
+
+Create client
+```javascript
+var client = amazon.<span class="apidocCodeKeywordSpan">createClient</span>({
+  awsId: &#x22;aws ID&#x22;,
+  awsSecret: &#x22;aws Secret&#x22;,
+  awsTag: &#x22;aws Tag&#x22;
+});
+```
+Now you are ready to use the API!
+...</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.amazon-product-api.utils" id="apidoc.module.amazon-product-api.utils">module amazon-product-api.utils</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.amazon-product-api.utils.formatQueryParams" id="apidoc.element.amazon-product-api.utils.formatQueryParams">
+        function <span class="apidocSignatureSpan">amazon-product-api.utils.</span>formatQueryParams
+        <span class="apidocSignatureSpan">(query, method, credentials)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">formatQueryParams = function (query, method, credentials) {
+  var params = {};
+
+  // format query keys
+  for (var param in query) {
+    var capitalized = capitalize(param);
+    params[capitalized] = query[param];
+  }
+
+  if (method === &#x27;ItemSearch&#x27;) {
+    // Default
+    params = setDefaultParams(params, {
+      SearchIndex: &#x27;All&#x27;,
+      Condition: &#x27;All&#x27;,
+      ResponseGroup: &#x27;ItemAttributes&#x27;,
+      Keywords: &#x27;&#x27;,
+      ItemPage: &#x27;1&#x27;
+    });
+
+  } else if (method === &#x27;ItemLookup&#x27;) {
+    // Default
+    params = setDefaultParams(params, {
+      SearchIndex: &#x27;All&#x27;,
+      Condition: &#x27;All&#x27;,
+      ResponseGroup: &#x27;ItemAttributes&#x27;,
+      IdType: &#x27;ASIN&#x27;,
+      IncludeReviewsSummary: &#x27;True&#x27;,
+      TruncateReviewsAt: &#x27;1000&#x27;,
+      VariationPage: &#x27;All&#x27;
+    });
+
+    // Constraints
+    // If ItemId is an ASIN (specified by IdType), a search index cannot be specified in the request.
+    if (params[&#x27;IdType&#x27;] === &#x27;ASIN&#x27;) {
+      delete params[&#x27;SearchIndex&#x27;];
+    }
+
+  } else if (method === &#x27;BrowseNodeLookup&#x27;) {
+    // Default
+    params = setDefaultParams(params, {
+      BrowseNodeId: &#x27;&#x27;,
+      ResponseGroup: &#x27;BrowseNodeInfo&#x27;
+    });
+  }
+
+
+  // Constants
+  params[&#x27;Version&#x27;] = &#x27;2013-08-01&#x27;;
+
+  // Common params
+  params[&#x27;AWSAccessKeyId&#x27;] = credentials.awsId;
+  // awsTag is associated with domain, so it ought to be defineable in query.
+  params[&#x27;AssociateTag&#x27;] = query.awsTag || credentials.awsTag;
+  params[&#x27;Timestamp&#x27;] = new Date().toISOString();
+  params[&#x27;Service&#x27;] = &#x27;AWSECommerceService&#x27;;
+  params[&#x27;Operation&#x27;] = method;
+
+  // sort
+  params = sort(params);
+
+  return params;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.amazon-product-api.utils.generateQueryString" id="apidoc.element.amazon-product-api.utils.generateQueryString">
+        function <span class="apidocSignatureSpan">amazon-product-api.utils.</span>generateQueryString
+        <span class="apidocSignatureSpan">(query, method, credentials)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">generateQueryString = function (query, method, credentials) {
+  var unsignedString = &#x27;&#x27;;
+  var domain = query.domain || &#x27;webservices.amazon.com&#x27;;
+  var params = formatQueryParams(query, method, credentials);
+
+  // generate query
+  unsignedString = Object.keys(params).map(function (key) {
+    return key + &#x22;=&#x22; + encodeURIComponent(params[key]).replace(/[!&#x27;()*]/g, function(c) {
+      return &#x27;%&#x27; + c.charCodeAt(0).toString(16);
+    });
+  }).join(&#x22;&#x26;&#x22;)
+
+  var signature = encodeURIComponent(generateSignature(&#x27;GET\n&#x27; + domain + &#x27;\n/onca/xml\n&#x27; + unsignedString, credentials.awsSecret
+)).replace(/\+/g, &#x27;%2B&#x27;);
+  var queryString = &#x27;https://&#x27; + domain + &#x27;/onca/xml?&#x27; + unsignedString + &#x27;&#x26;Signature=&#x27; + signature;
+
+  return queryString;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
