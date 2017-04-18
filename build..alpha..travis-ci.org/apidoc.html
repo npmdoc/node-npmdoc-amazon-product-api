@@ -78,6 +78,19 @@
 
     </ol></li>
 
+    <li class="apidocModuleLi"><a href="#apidoc.module.amazon-product-api.createClient">module amazon-product-api.createClient</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.amazon-product-api.createClient.createClient">
+            function <span class="apidocSignatureSpan">amazon-product-api.</span>createClient
+            <span class="apidocSignatureSpan">(credentials)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
     <li class="apidocModuleLi"><a href="#apidoc.module.amazon-product-api.utils">module amazon-product-api.utils</a><ol>
 
         <li>
@@ -139,6 +152,45 @@ Now you are ready to use the API!
     </ul>
 
 
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.amazon-product-api.createClient" id="apidoc.module.amazon-product-api.createClient">module amazon-product-api.createClient</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.amazon-product-api.createClient.createClient" id="apidoc.element.amazon-product-api.createClient.createClient">
+        function <span class="apidocSignatureSpan">amazon-product-api.</span>createClient
+        <span class="apidocSignatureSpan">(credentials)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">createClient = function (credentials) {
+  return {
+    itemSearch: runQuery(credentials, &#x27;ItemSearch&#x27;),
+    itemLookup: runQuery(credentials, &#x27;ItemLookup&#x27;),
+    browseNodeLookup: runQuery(credentials, &#x27;BrowseNodeLookup&#x27;)
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+Require library
+```javascript
+var amazon = require(&#x27;amazon-product-api&#x27;);
+```
+
+Create client
+```javascript
+var client = amazon.<span class="apidocCodeKeywordSpan">createClient</span>({
+  awsId: &#x22;aws ID&#x22;,
+  awsSecret: &#x22;aws Secret&#x22;,
+  awsTag: &#x22;aws Tag&#x22;
+});
+```
+Now you are ready to use the API!
+...</pre></li>
+    </ul>
 
 
 </div>
