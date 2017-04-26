@@ -1,6 +1,6 @@
 # npmdoc-amazon-product-api
 
-#### api documentation for  [amazon-product-api (v0.4.3)](https://github.com/t3chnoboy/amazon-product-api)  [![npm package](https://img.shields.io/npm/v/npmdoc-amazon-product-api.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-amazon-product-api) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-amazon-product-api.svg)](https://travis-ci.org/npmdoc/node-npmdoc-amazon-product-api)
+#### basic api documentation for  [amazon-product-api (v0.4.3)](https://github.com/t3chnoboy/amazon-product-api)  [![npm package](https://img.shields.io/npm/v/npmdoc-amazon-product-api.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-amazon-product-api) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-amazon-product-api.svg)](https://travis-ci.org/npmdoc/node-npmdoc-amazon-product-api)
 
 #### Amazon Product Advertising API client
 
@@ -73,7 +73,8 @@
     "scripts": {
         "test": "mocha"
     },
-    "version": "0.4.3"
+    "version": "0.4.3",
+    "bin": {}
 }
 ```
 
